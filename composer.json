@@ -1,0 +1,27 @@
+{
+  "name": "zabachok/symfobooster",
+  "type": "symfony-bundle",
+  "description": "Package helps to make api endpoints faster",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Daniil Romanov",
+      "email": "zabachok@zabachok.net"
+    }
+  ],
+  "require": {
+    "symfony/symfony": "^6.1",
+    "symfony/yaml": "^6.0",
+    "symfony/validator": "^6.0",
+    "symfony/serializer": "^6.0"
+  },
+  "require-dev": {
+    "symfony/maker-bundle": "^v1.38"
+  },
+  "autoload": {
+    "psr-4": {
+      "Zabachok\\Symfobooster\\": "src/"
+    }
+  }
+}
