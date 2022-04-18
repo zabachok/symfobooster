@@ -11,17 +11,21 @@
     }
   ],
   "require": {
-    "symfony/symfony": "^6.1",
+    "php": ">=8.0.2",
     "symfony/yaml": "^6.0",
     "symfony/validator": "^6.0",
     "symfony/serializer": "^6.0"
   },
   "require-dev": {
-    "symfony/maker-bundle": "^v1.38"
+    "symfony/maker-bundle": "^1.38",
+    "phpunit/phpunit": "^9.5"
   },
   "autoload": {
     "psr-4": {
-      "Zabachok\\Symfobooster\\": "src/"
-    }
+      "Zabachok\\Symfobooster\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
   }
 }
