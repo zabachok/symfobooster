@@ -27,5 +27,8 @@
     "exclude-from-classmap": [
       "/Tests/"
     ]
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit"
   }
 }
