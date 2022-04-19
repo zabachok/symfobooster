@@ -3,6 +3,7 @@
 namespace Zabachok\Symfobooster\Input\Transformer;
 
 use Zabachok\Symfobooster\Input\Transformer\Exception\InvalidTransformerException;
+use Zabachok\Symfobooster\Input\Transformer\Exception\TransformersNotFoundException;
 
 class TransformerCollection
 {
@@ -23,12 +24,19 @@ class TransformerCollection
 
     public function getTransformersByField(string $field): array
     {
-        return array_key_exists($field, $this->collection) ? $this->collection[$field] : [];
+        if (array_key_exists($field, $this->collection)) {
+            return $this->collection[$field];
+        }
+
+        throw new TransformersNotFoundException('Transformers not found for this field');
     }
 
     private function addTransformers(string $field, array $transformers): void
     {
         foreach ($transformers as $transformer) {
+            if (!($transformer instanceof TransformerInterface)) {
+                throw new InvalidTransformerException('Transformer must implement TransformerInterface');
+            }
             $this->addTransformer($field, $transformer);
         }
     }
