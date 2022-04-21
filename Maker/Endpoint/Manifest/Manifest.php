@@ -6,5 +6,6 @@ class Manifest
 {
     public string $domain;
     public string $endpoint;
+    public string $method = 'GET';
     public Service $service;
 }

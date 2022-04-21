@@ -13,8 +13,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Yaml\Yaml;
 use Zabachok\Symfobooster\Hydrator;
+use Zabachok\Symfobooster\Maker\Endpoint\Maker\InputMaker;
+use Zabachok\Symfobooster\Maker\Endpoint\Maker\RouterMaker;
+use Zabachok\Symfobooster\Maker\Endpoint\Maker\EndpointConfigMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\ServiceMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Manifest\Manifest;
+use Zabachok\Symfobooster\Maker\Storage;
 
 class EndpointMaker extends AbstractMaker
 {
@@ -49,12 +53,29 @@ class EndpointMaker extends AbstractMaker
         $rawManifest = Yaml::parse(file_get_contents($manifestFilePath));
         $hydrator = new Hydrator();
         $manifest = $hydrator->hydrate(Manifest::class, $rawManifest);
+        $storage = new Storage();
 
-        $maker = new ServiceMaker($input, $io, $generator, $manifest);
-        $maker->make();
+        foreach ($this->getMakers() as $maker) {
+            $maker = new $maker($input, $io, $generator, $manifest, $storage);
+            try {
+                $maker->make();
+            } catch (RuntimeCommandException $exception) {
+                echo $exception->getMessage();
+            }
+        }
 
         $generator->writeChanges();
 
         $this->writeSuccessMessage($io);
+    }
+
+    private function getMakers(): array
+    {
+        return [
+            InputMaker::class,
+            ServiceMaker::class,
+            EndpointConfigMaker::class,
+            RouterMaker::class,
+        ];
     }
 }
