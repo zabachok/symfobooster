@@ -14,6 +14,9 @@ class Hydrator
         $object = is_object($target) ? $target : $reflection->newInstanceWithoutConstructor();
 
         foreach ($data as $name => $value) {
+            if (!$reflection->hasProperty($name)) {
+                continue;
+            }
             $property = $reflection->getProperty($name);
 
             if (class_exists($property->getType()->getName())) {

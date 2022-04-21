@@ -6,3 +6,22 @@ services:
   Zabachok\Symfobooster\Maker\EndpointMaker:
     class: Zabachok\Symfobooster\Maker\Endpoint\EndpointMaker
     tags: ["maker.command"]
+
+  symfobooster.controller:
+    class: Zabachok\Symfobooster\Controller\SingleController
+    arguments:
+      $test: 'real'
+
+  symfobooster.input.loader:
+    class: Zabachok\Symfobooster\Input\InputLoader
+    arguments:
+      $extractorFactory: '@symfobooster.input.extractorFactory'
+
+  symfobooster.input.extractorFactory:
+    class: Zabachok\Symfobooster\Input\Extractor\ExtractorFactory
+    arguments:
+      $extractors:
+        query: '@symfobooster.input.extractors.query'
+
+  symfobooster.input.extractors.query:
+    class: Zabachok\Symfobooster\Input\Extractor\QueryExtractor
