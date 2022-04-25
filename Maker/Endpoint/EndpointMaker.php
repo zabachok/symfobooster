@@ -57,11 +57,11 @@ class EndpointMaker extends AbstractMaker
 
         foreach ($this->getMakers() as $maker) {
             $maker = new $maker($input, $io, $generator, $manifest, $storage);
-            try {
+//            try {
                 $maker->make();
-            } catch (RuntimeCommandException $exception) {
-                echo $exception->getMessage();
-            }
+//            } catch (RuntimeCommandException $exception) {
+//                echo $exception->getMessage();
+//            }
         }
 
         $generator->writeChanges();

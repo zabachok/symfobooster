@@ -8,4 +8,5 @@ class Manifest
     public string $endpoint;
     public string $method = 'GET';
     public Service $service;
+    public Input $input;
 }

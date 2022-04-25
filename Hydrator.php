@@ -22,7 +22,12 @@ class Hydrator
             if (class_exists($property->getType()->getName())) {
                 $property->setValue($object, $this->hydrate($property->getType()->getName(), $value));
             } else {
-                $property->setValue($object, $value);
+                $setterName = $this->getSetterName($property->getName());
+                if ($reflection->hasMethod($setterName)) {
+                    $object->{$setterName}($value);
+                } else {
+                    $property->setValue($object, $value);
+                }
             }
         }
 
@@ -36,5 +41,10 @@ class Hydrator
             $this->reflectionClassMap[$className] = new ReflectionClass($className);
         }
         return $this->reflectionClassMap[$className];
+    }
+
+    private function getSetterName(string $property): string
+    {
+        return 'set' . ucfirst($property);
     }
 }

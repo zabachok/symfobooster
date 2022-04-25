@@ -4,7 +4,7 @@ namespace Zabachok\Symfobooster\Input\Extractor;
 
 class ExtractorFactory
 {
-    private array $extractors = [];
+    private array $extractors;
 
     public function __construct(array $extractors)
     {

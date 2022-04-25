@@ -10,7 +10,10 @@ services:
   symfobooster.controller:
     class: Zabachok\Symfobooster\Controller\SingleController
     arguments:
-      $test: 'real'
+      $transformer: '@symfobooster.controller.transformer.json'
+
+  symfobooster.controller.transformer.json:
+    class: Zabachok\Symfobooster\Response\JsonTransformer
 
   symfobooster.input.loader:
     class: Zabachok\Symfobooster\Input\InputLoader
@@ -25,3 +28,9 @@ services:
 
   symfobooster.input.extractors.query:
     class: Zabachok\Symfobooster\Input\Extractor\QueryExtractor
+
+  symfobooster.input.transformer.explode:
+    class: Zabachok\Symfobooster\Input\Transformer\ExplodeTransformer
+
+  symfobooster.input.transformer.trim:
+    class: Zabachok\Symfobooster\Input\Transformer\TrimTransformer

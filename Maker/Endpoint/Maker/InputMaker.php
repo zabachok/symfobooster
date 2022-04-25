@@ -9,6 +9,7 @@ class InputMaker extends AbstractMaker
 
     public function make(): void
     {
+        print_r($this->manifest->input->fields);
         $serviceDetails = $this->generator->createClassNameDetails(
             $this->manifest->endpoint,
             'Domain\\' . ucfirst($this->manifest->domain) . '\\Input\\',
@@ -18,7 +19,10 @@ class InputMaker extends AbstractMaker
         $this->generator->generateClass(
             $serviceDetails->getFullName(),
             __DIR__ . '/templates/input.tpl.php',
-            []
+            [
+                'fields' => $this->manifest->input->fields,
+                'input' => $this->manifest->input,
+            ]
         );
     }
 }

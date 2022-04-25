@@ -5,12 +5,12 @@ namespace Zabachok\Symfobooster\Input\Attributes;
 use Attribute;
 
 #[Attribute(Attribute::TARGET_PROPERTY)]
-class Source
+class Transformer
 {
-    public string $source;
+    public string $name;
 
-    public function __construct(string $source)
+    public function __construct(string $name)
     {
-        $this->source = $source;
+        $this->name = $name;
     }
 }
