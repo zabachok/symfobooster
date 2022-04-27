@@ -31,12 +31,13 @@ class EndpointConfigMaker extends AbstractMaker
                     'parent' => 'symfobooster.controller',
                     'arguments' => [
                         '$inputLoader' => '@' . $prefix . '.input',
+                        '$service' => '@' . $prefix . '.service'
 //                        '@' . $prefix . '.service',
                     ],
                 ],
-//                $prefix . '.service' => [
-//                    'class' => $this->storage->get('serviceClass'),
-//                ],
+                $prefix . '.service' => [
+                    'class' => $this->storage->get('serviceClass'),
+                ],
                 $prefix . '.input' => [
                     'parent' => 'symfobooster.input.loader',
                     'arguments' => [

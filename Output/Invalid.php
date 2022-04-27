@@ -24,7 +24,7 @@ class Invalid implements OutputInterface
             $messages[$field][] = $violation->getMessage();
         }
 
-        return $messages;
+        return ['fields' => $messages];
     }
 
     public function getCode(): int

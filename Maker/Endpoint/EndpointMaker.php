@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Yaml\Yaml;
 use Zabachok\Symfobooster\Hydrator;
+use Zabachok\Symfobooster\Maker\Endpoint\Maker\FunctionalTestMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\InputMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\RouterMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\EndpointConfigMaker;
@@ -76,6 +77,7 @@ class EndpointMaker extends AbstractMaker
             ServiceMaker::class,
             EndpointConfigMaker::class,
             RouterMaker::class,
+            FunctionalTestMaker::class,
         ];
     }
 }
