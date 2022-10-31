@@ -11,7 +11,7 @@ class NotFound implements OutputInterface
         $this->message = $message;
     }
 
-    public function getData(): array|object|string
+    public function getData(): array|object|string|null
     {
         return $this->message;
     }

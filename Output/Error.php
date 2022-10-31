@@ -13,7 +13,7 @@ class Error implements OutputInterface
         $this->exception = $exception;
     }
 
-    public function getData(): array|object|string
+    public function getData(): array|object|string|null
     {
         return [
             'class' => get_class($this->exception),

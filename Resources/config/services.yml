@@ -25,6 +25,10 @@ services:
     arguments:
       $extractors:
         query: '@symfobooster.input.extractors.query'
+        body: '@symfobooster.input.extractors.body'
+
+  symfobooster.input.extractors.body:
+    class: Zabachok\Symfobooster\Input\Extractor\BodyExtractor
 
   symfobooster.input.extractors.query:
     class: Zabachok\Symfobooster\Input\Extractor\QueryExtractor

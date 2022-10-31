@@ -38,7 +38,7 @@ class <?= $class_name ?> implements InputInterface
                 [
 <?php foreach ($fields as $field): ?>
                     '<?= $field->name ?>' => [
-                        new Assert\NotNull(),
+                        new Assert\Required(),
                         new Assert\Type('<?= $field->type ?>'),
                     ],
 <?php endforeach; ?>

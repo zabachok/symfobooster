@@ -14,7 +14,7 @@ class Invalid implements OutputInterface
         $this->violationList = $violationList;
     }
 
-    public function getData(): array|object|string
+    public function getData(): array|object|string|null
     {
         $messages = [];
 

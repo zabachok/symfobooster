@@ -11,7 +11,7 @@ class Success implements OutputInterface
         $this->data = $data;
     }
 
-    public function getData(): array|object|string
+    public function getData(): array|object|string|null
     {
         return $this->data;
     }

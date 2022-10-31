@@ -15,6 +15,7 @@ use Symfony\Component\Yaml\Yaml;
 use Zabachok\Symfobooster\Hydrator;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\FunctionalTestMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\InputMaker;
+use Zabachok\Symfobooster\Maker\Endpoint\Maker\OutputMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\RouterMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\EndpointConfigMaker;
 use Zabachok\Symfobooster\Maker\Endpoint\Maker\ServiceMaker;
@@ -44,10 +45,9 @@ class EndpointMaker extends AbstractMaker
 
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator)
     {
-        if (!$input->hasOption('manifest')) {
-            throw new RuntimeCommandException('--manifest option is required');
-        }
-        $manifestFilePath = $generator->getRootDirectory() . '/' . $input->getOption('manifest');
+        $manifestFileName = empty($input->getOption('manifest')) ? 'manifest.yml' : $input->getOption('manifest');
+
+        $manifestFilePath = $generator->getRootDirectory() . '/' . $manifestFileName;
         if (!file_exists($manifestFilePath)) {
             throw new RuntimeCommandException('Manifest file not found');
         }
@@ -73,11 +73,12 @@ class EndpointMaker extends AbstractMaker
     private function getMakers(): array
     {
         return [
-            InputMaker::class,
-            ServiceMaker::class,
-            EndpointConfigMaker::class,
-            RouterMaker::class,
-            FunctionalTestMaker::class,
+//            InputMaker::class,
+            OutputMaker::class,
+//            ServiceMaker::class,
+//            EndpointConfigMaker::class,
+//            RouterMaker::class,
+//            FunctionalTestMaker::class,
         ];
     }
 }

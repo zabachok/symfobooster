@@ -2,6 +2,7 @@
 
 namespace Zabachok\Symfobooster\Maker;
 
+use Nette\PhpGenerator\PhpFile;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\Generator;
 use Symfony\Component\Console\Input\InputInterface;
@@ -58,5 +59,17 @@ abstract class AbstractMaker implements MakerInterface
     protected function writeConfigFile(string $path, array $config): void
     {
         $this->writeYamlFile($this->generator->getRootDirectory() . '/config' . $path, $config);
+    }
+
+    protected function writeClassFile(string $path, string $content): void
+    {
+        $realPath = $this->generator->getRootDirectory() . '/src' . $path;
+
+        $directory = dirname($realPath);
+        if (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        file_put_contents($realPath, $content);
     }
 }

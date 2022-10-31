@@ -3,20 +3,27 @@
 namespace Zabachok\Symfobooster\Maker\Endpoint\Manifest;
 
 use Zabachok\Symfobooster\Hydrator;
+use Zabachok\Symfobooster\Output\Created;
+use Zabachok\Symfobooster\Output\Success;
 
-class Input
+class Output
 {
+    private const KINDS = ['success', 'created'];
+    private const EXTEND_CLASSES = [
+        'success' => Success::class,
+        'no-content' => Created::class
+    ];
+
+    public string $kind = 'success';
     /** @var Field[] */
     public array $fields = [];
-    public bool $hasMuted = false;
-    public bool $hadRenamed = false;
 
     public function setFields(array $fields): void
     {
         $hydrator = new Hydrator();
         foreach ($fields as $key => $manifest) {
             /** @var Field $field */
-            $field = $hydrator->hydrate(Field::class, $manifest  ?? ['name' => $key]);
+            $field = $hydrator->hydrate(Field::class, $manifest ?? ['name' => $key]);
             $field->name = $key;
             if ($field->muted) {
                 $this->hasMuted = true;
@@ -26,5 +33,10 @@ class Input
             }
             $this->fields[] = $field;
         }
+    }
+
+    public function getExtendClass(): string
+    {
+        return self::EXTEND_CLASSES[$this->kind];
     }
 }
