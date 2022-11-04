@@ -6,4 +6,5 @@ class Service
 {
     public bool $transactional;
     public string $repository;
+    public string $entity;
 }

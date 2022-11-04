@@ -72,4 +72,17 @@ abstract class AbstractMaker implements MakerInterface
 
         file_put_contents($realPath, $content);
     }
+
+    protected function getVariableByClass(string $class): string
+    {
+        return lcfirst($this->getNameByClass($class));
+    }
+
+    protected function getNameByClass(string $class): string
+    {
+        $pieces = explode('\\', $class);
+        $className = end($pieces);
+        return str_replace('Interface', '', $className);
+    }
+
 }
