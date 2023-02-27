@@ -14,13 +14,5 @@ class InputMaker extends AbstractMaker
             'Input'
         );
         $this->storage->set('inputClass', $serviceDetails->getFullName());
-        $this->generator->generateClass(
-            $serviceDetails->getFullName(),
-            __DIR__ . '/templates/input.tpl.php',
-            [
-                'fields' => $this->manifest->input->fields,
-                'input' => $this->manifest->input,
-            ]
-        );
     }
 }

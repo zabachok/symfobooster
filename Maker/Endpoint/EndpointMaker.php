@@ -58,11 +58,11 @@ class EndpointMaker extends AbstractMaker
 
         foreach ($this->getMakers() as $maker) {
             $maker = new $maker($input, $io, $generator, $manifest, $storage);
-//            try {
+            try {
                 $maker->make();
-//            } catch (RuntimeCommandException $exception) {
-//                echo $exception->getMessage();
-//            }
+            } catch (RuntimeCommandException $exception) {
+                echo $exception->getMessage();
+            }
         }
 
         $generator->writeChanges();
@@ -73,12 +73,12 @@ class EndpointMaker extends AbstractMaker
     private function getMakers(): array
     {
         return [
-//            InputMaker::class,
+            InputMaker::class,
             OutputMaker::class,
-//            ServiceMaker::class,
-//            EndpointConfigMaker::class,
-//            RouterMaker::class,
-//            FunctionalTestMaker::class,
+            ServiceMaker::class,
+            EndpointConfigMaker::class,
+            RouterMaker::class,
+            FunctionalTestMaker::class,
         ];
     }
 }

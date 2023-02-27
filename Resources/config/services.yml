@@ -14,6 +14,8 @@ services:
 
   symfobooster.controller.transformer.json:
     class: Zabachok\Symfobooster\Response\JsonTransformer
+    arguments:
+      $serializer: '@serializer'
 
   symfobooster.input.loader:
     class: Zabachok\Symfobooster\Input\InputLoader
