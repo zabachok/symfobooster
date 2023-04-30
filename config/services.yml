@@ -3,10 +3,6 @@ services:
     autowire: true
     autoconfigure: true
 
-  Zabachok\Symfobooster\Maker\EndpointMaker:
-    class: Zabachok\Symfobooster\Maker\Endpoint\EndpointMaker
-    tags: ["maker.command"]
-
   symfobooster.controller:
     class: Zabachok\Symfobooster\Controller\SingleController
     arguments:
