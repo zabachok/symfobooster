@@ -2,12 +2,18 @@
 
 namespace Zabachok\Symfobooster;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Zabachok\Symfobooster\DependencyInjection\SymfoboosterExtension;
 
-class SymfoboosterBundle extends Bundle
+class SymfoboosterBundle extends AbstractBundle
 {
-    public function getPath(): string
+    public function getContainerExtension(): ?ExtensionInterface
     {
-        return dirname(__DIR__);
+        return new SymfoboosterExtension();
     }
+//    public function getPath(): string
+//    {
+//        return dirname(__DIR__);
+//    }
 }

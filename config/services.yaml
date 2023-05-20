@@ -5,6 +5,7 @@ services:
 
   symfobooster.controller:
     class: Zabachok\Symfobooster\Controller\SingleController
+#    public: true
     arguments:
       $transformer: '@symfobooster.controller.transformer.json'
 
