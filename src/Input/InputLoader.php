@@ -14,7 +14,6 @@ use Zabachok\Symfobooster\Input\Attributes\Renamed;
 use Zabachok\Symfobooster\Input\Attributes\Source;
 use Zabachok\Symfobooster\Input\Exception\InvalidInputException;
 use Zabachok\Symfobooster\Input\Extractor\ExtractorFactory;
-use Zabachok\Symfobooster\Input\Transformer\TransformerInterface;
 
 class InputLoader
 {
